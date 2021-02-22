@@ -68,7 +68,7 @@ namespace CustomListUnitTesting
             intList.Add(3);
             intList.Add(4);
             // Act
-            bool expected = false;
+            bool expected = true;
             bool actual = intList.Remove(1);
 
 
@@ -154,6 +154,54 @@ namespace CustomListUnitTesting
             {
                 Assert.AreEqual(i, intList[i]);
             }
+        }
+
+
+        // Batch 2
+        [TestMethod]
+        public void Remove_FourIntList_RemoveAllValues_NextRemoveShouldReturnFalse()
+        {
+            // Arrange
+            CustomList<int> intList = new CustomList<int>();
+
+            intList.Add(0);
+            intList.Add(1);
+            intList.Add(2);
+            intList.Add(3);
+
+            // Act
+            intList.Remove(0);
+            intList.Remove(1);
+            intList.Remove(2);
+            intList.Remove(3);
+            bool expected = false;
+            bool actual = intList.Remove(0);
+
+            // Assert
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        // Part 2 of remove 1 with 2 matches. Check if other value that matched shfited down by 1
+        [TestMethod]
+        public void Remove_FourIntList_TwoMatch_CountShouldDecreaseByOne()
+        {
+            // Arrange
+            CustomList<int> intList = new CustomList<int>();
+
+            int matching = 0;
+            int other = 1;
+            intList.Add(matching);
+            intList.Add(matching);
+            intList.Add(other);
+            intList.Add(other);
+            // Act
+            int expected = matching;
+            intList.Remove(matching);
+            int actual = intList[0];
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
 
     }
