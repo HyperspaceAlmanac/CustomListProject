@@ -60,5 +60,16 @@ namespace CustomListUnitTesting
             // Assert
             Assert.AreEqual(actual, expected);
         }
+        [TestMethod]
+        public void InternalArray_AcessedAfterInitialization_ShouldThrowException()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+
+            // Act
+
+            // Assert
+            Assert.ThrowsException<AccessViolationException>(cList.InternalArray);
+        }
     }
 }
