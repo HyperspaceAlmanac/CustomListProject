@@ -27,8 +27,19 @@ namespace CustomListImplementation
         }
         public T this[int i]
         {
-            get { return internalArray[i]; }
-            set { internalArray[i] = value; }
+            get {
+                if (i < 0 || i >= count)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                return internalArray[i];
+            }
+            set {
+                if (i < 0 || i >= count)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                internalArray[i] = value; }
         }
 
         public void Add(T item)
