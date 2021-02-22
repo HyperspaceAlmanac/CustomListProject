@@ -33,5 +33,34 @@ namespace CustomListUnitTesting
             // Assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void Add_PutIntIntoEmptyList_CapacityShouldEqualFive()
+        {
+            // Arrange
+            CustomList<int> intList = new CustomList<int>();
+            // Act
+            int expected = 5;
+
+            intList.Add(1);
+            int actual = intList.Capacity;
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Add_PutFiveIntsIntoEmptyList_CapacityShouldEqualTen()
+        {
+            // Arrange
+            CustomList<int> intList = new CustomList<int>();
+            // Act
+            int expected = 5;
+
+            for (int i = 0; i < 5; i++)
+            {
+                intList.Add(1);
+            }
+            int actual = intList.Capacity;
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
