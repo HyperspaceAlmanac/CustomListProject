@@ -66,5 +66,10 @@ namespace CustomListImplementation
             internalArray[count] = item;
             count += 1;
         }
+
+        public bool Remove(T item)
+        {
+            return true;
+        }
     }
 }

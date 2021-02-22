@@ -184,7 +184,7 @@ namespace CustomListUnitTesting
         }
         // Part 2 of remove 1 with 2 matches. Check if other value that matched shfited down by 1
         [TestMethod]
-        public void Remove_FourIntList_TwoMatch_CountShouldDecreaseByOne()
+        public void Remove_FourIntList_TwoMatch_SecondMatchShouldShiftDownByOne()
         {
             // Arrange
             CustomList<int> intList = new CustomList<int>();
