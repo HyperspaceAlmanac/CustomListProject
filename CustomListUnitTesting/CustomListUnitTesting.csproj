@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="BasicSanityUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AddUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

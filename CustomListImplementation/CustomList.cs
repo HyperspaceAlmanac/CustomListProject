@@ -25,8 +25,13 @@ namespace CustomListImplementation
             get => capacity;
             set => capacity = value;
         }
+        public T this[int i]
+        {
+            get => internalArray[i];
+            set => internalArray[i] = value;
+        }
 
-        public void Add()
+        public void Add(T item)
         {
         }
     }
