@@ -62,6 +62,7 @@ namespace CustomListUnitTesting
             // Assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
         public void Add_PutNineteenIntsIntoEmptyList_CapacityShouldEqualTwenty()
         {
             // Arrange
@@ -76,6 +77,24 @@ namespace CustomListUnitTesting
             int actual = intList.Capacity;
             // Assert
             Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Add_PutFiveIntsIntoEmptyList_ValueShouldEqualIndexAtEachIndex()
+        {
+            // Arrange
+            CustomList<int> intList = new CustomList<int>();
+            // Act
+            int expected = 5;
+
+            for (int i = 0; i < 5; i++)
+            {
+                intList.Add(i);
+            }
+            // Assert
+            for (int i = 0; i < 5; i++)
+            {
+                Assert.AreEqual(intList[i], i);
+            }
         }
     }
 }
