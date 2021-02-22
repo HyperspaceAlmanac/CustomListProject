@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AddUnitTest.cs" />
     <Compile Include="IndexerUnitTests.cs" />
+    <Compile Include="RemoveUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
