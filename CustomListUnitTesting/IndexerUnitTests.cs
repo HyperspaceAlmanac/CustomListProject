@@ -138,9 +138,24 @@ namespace CustomListUnitTesting
             // Arrange
             CustomList<int> intList = new CustomList<int>();
             // Act
+            intList.Add(0);
+            intList.Add(0);
 
             // Assert
             intList[-1] = 0;
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Indexer_TwoItemsInList_SetIndexAtIndexTwoShouldThrowException()
+        {
+            // Arrange
+            CustomList<int> intList = new CustomList<int>();
+            // Act
+            intList.Add(0);
+            intList.Add(0);
+
+            // Assert
+            intList[2] = 0;
         }
 
         // Set, and then Get
@@ -149,9 +164,10 @@ namespace CustomListUnitTesting
         {
             // Arrange
             CustomList<int> intList = new CustomList<int>();
+            int original = 0;
             for (int i = 0; i < 4; i++)
             {
-                intList.Add(0);
+                intList.Add(original);
             }
             // Act
             intList[1] = 100;
@@ -159,9 +175,25 @@ namespace CustomListUnitTesting
             int actual = intList[1];
             // Assert
             Assert.AreEqual(expected, actual);
-
         }
 
-
+        //
+        [TestMethod]
+        public void Indexer_FourItemsInListSetIndexAtThree_IndexZeroToTwoShouldNotChange()
+        {
+            // Arrange
+            CustomList<int> intList = new CustomList<int>();
+            int original = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                intList.Add(original);
+            }
+            // Act
+            intList[3] = 100;
+            // Assert
+            for (int i = 0; i < 3; i++) {
+                Assert.AreEqual(original, intList[i]);
+            }
+        }
     }
 }
