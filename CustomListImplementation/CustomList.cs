@@ -27,8 +27,8 @@ namespace CustomListImplementation
         }
         public T this[int i]
         {
-            get => internalArray[i];
-            set => internalArray[i] = value;
+            get { return internalArray[i]; }
+            set { internalArray[i] = value; }
         }
 
         public void Add(T item)

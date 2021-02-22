@@ -107,6 +107,61 @@ namespace CustomListUnitTesting
             // Assert
             int result = intList[9];
         }
+        // Set cases
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Indexer_NoItemsInList_SetIndexZeroShouldThrowException()
+        {
+            // Arrange
+            CustomList<int> intList = new CustomList<int>();
+            // Act
+
+            // Assert
+            intList[0] = 0;
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Indexer_NoItemsInList_SetIndexAtNegativeOneShouldThrowException()
+        {
+            // Arrange
+            CustomList<int> intList = new CustomList<int>();
+            // Act
+
+            // Assert
+            intList[-1] = 0;
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Indexer_TwoItemsInList_SetIndexAtNegativeOneShouldThrowException()
+        {
+            // Arrange
+            CustomList<int> intList = new CustomList<int>();
+            // Act
+
+            // Assert
+            intList[-1] = 0;
+        }
+
+        // Set, and then Get
+        [TestMethod]
+        public void Indexer_FourItemsInList_SetAndGetIndexOneShouldMatch()
+        {
+            // Arrange
+            CustomList<int> intList = new CustomList<int>();
+            for (int i = 0; i < 4; i++)
+            {
+                intList.Add(0);
+            }
+            // Act
+            intList[1] = 100;
+            int expected = 100;
+            int actual = intList[1];
+            // Assert
+            Assert.AreEqual(expected, actual);
+
+        }
+
 
     }
 }
