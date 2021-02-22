@@ -69,6 +69,33 @@ namespace CustomListImplementation
 
         public bool Remove(T item)
         {
+            int removalIndex = -1;
+            for (int i = 0; i < count; i++)
+            {
+                if (internalArray[i].Equals(item))
+                {
+                    removalIndex = i;
+                    break;
+                }
+            }
+            if (removalIndex == -1)
+            {
+                return false;
+            }
+            T[] newArray = new T[capacity];
+            for (int i = 0; i < count; i++)
+            {
+                if (i < removalIndex)
+                {
+                    newArray[i] = internalArray[i];
+                }
+                else if (i > removalIndex)
+                {
+                    newArray[i - 1] = internalArray[i];
+                }
+            }
+            internalArray = newArray;
+            count -= 1;
             return true;
         }
     }
