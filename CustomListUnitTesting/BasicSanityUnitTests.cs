@@ -18,7 +18,7 @@ namespace CustomListUnitTesting
             int actual = cList.Count;
 
             // Assert
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void Count_AfterStringGenericInstantiation_ShouldBeZero()
@@ -31,7 +31,7 @@ namespace CustomListUnitTesting
             int actual = cList.Count;
 
             // Assert
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void Capacity_AfterIntGenericInstantiationc_ShouldBeFive()
@@ -44,7 +44,7 @@ namespace CustomListUnitTesting
             int actual = cList.Capacity;
 
             // Assert
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -58,18 +58,7 @@ namespace CustomListUnitTesting
             int actual = cList.Count;
 
             // Assert
-            Assert.AreEqual(actual, expected);
-        }
-        [TestMethod]
-        public void InternalArray_AcessedAfterInitialization_ShouldThrowException()
-        {
-            // Arrange
-            CustomList<int> cList = new CustomList<int>();
-
-            // Act
-
-            // Assert
-            Assert.ThrowsException<AccessViolationException>(cList.InternalArray);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
