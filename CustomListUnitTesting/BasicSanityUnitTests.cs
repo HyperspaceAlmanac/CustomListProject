@@ -40,7 +40,7 @@ namespace CustomListUnitTesting
             CustomList<int> cList = new CustomList<int>();
 
             // Act
-            int expected = 5;
+            int expected = 0;
             int actual = cList.Capacity;
 
             // Assert

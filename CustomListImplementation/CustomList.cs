@@ -13,7 +13,7 @@ namespace CustomListImplementation
         private int capacity;
         public CustomList() {
             count = 0;
-            capacity = 5;
+            capacity = 0;
             internalArray = new T[capacity];
         }
         public int Count
@@ -23,6 +23,11 @@ namespace CustomListImplementation
         public int Capacity
         {
             get => capacity;
+            set => capacity = value;
+        }
+
+        public void Add()
+        {
         }
     }
 }

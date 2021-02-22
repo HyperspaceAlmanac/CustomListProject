@@ -24,22 +24,22 @@ namespace CustomListUnitTesting
         public void Add_PutStringIntoEmptyList_CountShouldEqualOne()
         {
             // Arrange
-            CustomList<string> intList = new CustomList<string>();
+            CustomList<string> stringList = new CustomList<string>();
             // Act
             int expected = 1;
 
-            intList.Add("Value");
-            int actual = intList.Count;
+            stringList.Add("Value");
+            int actual = stringList.Count;
             // Assert
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void Add_PutIntIntoEmptyList_CapacityShouldEqualFive()
+        public void Add_PutIntIntoEmptyList_CapacityShouldEqualFour()
         {
             // Arrange
             CustomList<int> intList = new CustomList<int>();
             // Act
-            int expected = 5;
+            int expected = 4;
 
             intList.Add(1);
             int actual = intList.Capacity;
@@ -47,14 +47,14 @@ namespace CustomListUnitTesting
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void Add_PutFiveIntsIntoEmptyList_CapacityShouldEqualTen()
+        public void Add_PutFourIntsIntoEmptyList_CapacityShouldEqualFour()
         {
             // Arrange
             CustomList<int> intList = new CustomList<int>();
             // Act
-            int expected = 5;
+            int expected = 4;
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 intList.Add(1);
             }
@@ -63,14 +63,14 @@ namespace CustomListUnitTesting
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void Add_PutNineteenIntsIntoEmptyList_CapacityShouldEqualTwenty()
+        public void Add_PutNineIntoEmptyList_CapacityShouldEqualSixTeen()
         {
             // Arrange
             CustomList<int> intList = new CustomList<int>();
             // Act
-            int expected = 5;
+            int expected = 16;
 
-            for (int i = 0; i < 19; i++)
+            for (int i = 0; i < 9; i++)
             {
                 intList.Add(1);
             }
