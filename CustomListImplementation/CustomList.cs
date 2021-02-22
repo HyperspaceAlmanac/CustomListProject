@@ -43,6 +43,7 @@ namespace CustomListImplementation
                 else
                 {
                     T[] newArray = new T[capacity * 2];
+                    // Copy over everything from previous array
                     for (int i = 0; i < capacity; i++)
                     {
                         newArray[i] = internalArray[i];

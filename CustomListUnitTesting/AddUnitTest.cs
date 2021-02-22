@@ -84,7 +84,6 @@ namespace CustomListUnitTesting
             // Arrange
             CustomList<int> intList = new CustomList<int>();
             // Act
-            int expected = 5;
 
             for (int i = 0; i < 5; i++)
             {
