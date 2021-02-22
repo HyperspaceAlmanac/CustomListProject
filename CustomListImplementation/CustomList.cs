@@ -14,7 +14,7 @@ namespace CustomListImplementation
         public CustomList() {
             count = 0;
             capacity = 0;
-            internalArray = new T[capacity];
+            internalArray = new T[0];
         }
         public int Count
         {
@@ -33,6 +33,26 @@ namespace CustomListImplementation
 
         public void Add(T item)
         {
+            if (count >= capacity)
+            {
+                if (capacity == 0)
+                {
+                    capacity = 4;
+                    internalArray = new T[4];
+                }
+                else
+                {
+                    T[] newArray = new T[capacity * 2];
+                    for (int i = 0; i < capacity; i++)
+                    {
+                        newArray[i] = internalArray[i];
+                    }
+                    internalArray = newArray;
+                    capacity = capacity * 2;
+                }
+            }
+            internalArray[count] = item;
+            count += 1;
         }
     }
 }
