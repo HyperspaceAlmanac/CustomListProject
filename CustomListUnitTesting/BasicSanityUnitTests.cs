@@ -5,11 +5,12 @@ using System;
 namespace CustomListUnitTesting
 {
     [TestClass]
-    public class UnitTest1
+    public class BasicSanityUnitTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Constructor_CreateIntGeneric_CountStartsAtZero()
         {
+
         }
     }
 }
