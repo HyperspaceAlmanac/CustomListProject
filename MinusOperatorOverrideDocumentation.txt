@@ -19,7 +19,7 @@ The CustomList<T> that specifies the values (does not need to be unique) to remo
 # Returns
 ###############
 CustomList<T>
-A new Customlist<T> object that is a deep copy of the left operand with common values shared with the right operand removed.
+A new Customlist<T> object that is a deep copy of the left operand with the shared items in the right operand removed.
 
 ###############
 # Examples
@@ -109,10 +109,10 @@ public Class Examples
 ###############
 
 Returns a deep copy of the left operand CustomList<T> with values in the right operand CustomList<T> removed.
-For each value T (including duplicates) in right operand, try to remove the first instance of it the left operand.
+For each value (including duplicates) in the right operand, try to remove the first instance of it from the left operand.
 Return the remaining values in the left operand in a CustomList<T> object.
 
-The returned deep copy CustomList<T> will retain the Capacity value of the left operand.
+The returned CustomList<T> object will retain the original Capacity value of the left operand.
 
 ###############
 # Applies to
