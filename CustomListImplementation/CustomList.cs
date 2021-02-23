@@ -98,5 +98,17 @@ namespace CustomListImplementation
             count -= 1;
             return true;
         }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for (int i = 0; i < count; i++)
+            {
+                sb.Append((i > 0 ? "," : "") + internalArray[i].ToString());
+            }
+            sb.Append("]");
+            return sb.ToString();
+        }
     }
 }

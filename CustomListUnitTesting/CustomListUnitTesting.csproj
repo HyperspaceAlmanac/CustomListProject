@@ -54,6 +54,7 @@
     <Compile Include="AddUnitTest.cs" />
     <Compile Include="IndexerUnitTests.cs" />
     <Compile Include="RemoveUnitTest.cs" />
+    <Compile Include="ToStringUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
