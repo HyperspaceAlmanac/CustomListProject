@@ -153,6 +153,15 @@ namespace CustomListImplementation
         public static CustomList<T> operator -(CustomList<T> left, CustomList<T> right)
         {
             CustomList<T> newList = new CustomList<T>();
+            newList.Capacity = left.Capacity;
+            for (int i = 0; i < left.Count; i++)
+            {
+                newList.Add(left[i]);
+            }
+            for (int i = 0; i < right.Count; i++)
+            {
+                newList.Remove(right[i]);
+            }
             return newList;
         }
 
