@@ -157,7 +157,7 @@ namespace CustomListUnitTesting
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void SubtractOperator_SixItemsListAndTwoCommonValues_RemoveOnlyFirstInstance()
+        public void SubtractOperator_SixItemsListAndThreeCommonValues_RemoveOnlyFirstInstance()
         {
             // Arrange
             CustomList<int> leftOperand = new CustomList<int>();
@@ -175,6 +175,75 @@ namespace CustomListUnitTesting
 
             // Act
             string expected = twoOneZero.ToString();
+            string actual = (leftOperand - rightOperand).ToString();
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SubtractOperator_SixItemsListAndThreeCommonValues_CapacitySameAsLeftOperand()
+        {
+            // Arrange
+            CustomList<int> leftOperand = new CustomList<int>();
+            CustomList<int> rightOperand = new CustomList<int>();
+            CustomList<int> twoOneZero = new CustomList<int>();
+            for (int i = 0; i < 3; i++)
+            {
+                leftOperand.Add(i);
+                rightOperand.Add(i);
+                twoOneZero.Add(2 - i);
+            }
+            leftOperand.Add(2);
+            leftOperand.Add(1);
+            leftOperand.Add(0);
+
+            // Act
+            int expected = leftOperand.Capacity;
+            int actual = (leftOperand - rightOperand).Capacity;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void SubtractOperator_SixItemsListAndThreeCommonValues_CountShouldEqualThree()
+        {
+            // Arrange
+            CustomList<int> leftOperand = new CustomList<int>();
+            CustomList<int> rightOperand = new CustomList<int>();
+            for (int i = 0; i < 3; i++)
+            {
+                leftOperand.Add(i);
+                rightOperand.Add(i);
+            }
+            leftOperand.Add(2);
+            leftOperand.Add(1);
+            leftOperand.Add(0);
+
+            // Act
+            int expected = 3;
+            int actual = (leftOperand - rightOperand).Count;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SubtractOperator_SixItemsWithTwoOfEach_ThreeCopiesOfTwoCommonValues_ResultShouldOnlyContainTwoCopiesOfOneValue()
+        {
+            // Arrange
+            CustomList<int> leftOperand = new CustomList<int>();
+            CustomList<int> rightOperand = new CustomList<int>();
+            for (int i = 0; i < 3; i++)
+            {
+                leftOperand.Add(i);
+                leftOperand.Add(i);
+                rightOperand.Add(0);
+                rightOperand.Add(2);
+            }
+
+            // Act
+            CustomList<int> oneOne = new CustomList<int>();
+            oneOne.Add(1);
+            oneOne.Add(1);
+            string expected = oneOne.ToString();
             string actual = (leftOperand - rightOperand).ToString();
             //Assert
             Assert.AreEqual(expected, actual);
