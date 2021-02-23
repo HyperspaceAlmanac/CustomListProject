@@ -38,7 +38,7 @@ namespace CustomListUnitTesting
         }
 
         [TestMethod]
-        public void AdditionOverload_EmptyListAndOneItem_ShouldReturnOneItem()
+        public void AdditionOverload_EmptyListAndOneItem_ShouldEqualOneItemList()
         {
             // Arrange
             CustomList<int> left = new CustomList<int>();
@@ -72,7 +72,7 @@ namespace CustomListUnitTesting
         }
 
         [TestMethod]
-        public void AdditionOverload_OneItemAndEmptyList_ShouldReturnOneItem()
+        public void AdditionOverload_OneItemAndEmptyList_ShouldEqualOneItemList()
         {
             // Arrange
             CustomList<int> left = new CustomList<int>();
@@ -105,7 +105,7 @@ namespace CustomListUnitTesting
         }
 
         [TestMethod]
-        public void AdditionOverload_OneItemAndOneItem_ShouldReturnTwoItems()
+        public void AdditionOverload_OneItemAndOneItem_ShouldEqualTwoItemsList()
         {
             // Arrange
             CustomList<int> left = new CustomList<int>();
@@ -135,6 +135,79 @@ namespace CustomListUnitTesting
             // Act
             int expected = 2;
             int actual = (left + right).Count;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        // Smaller Capacity (4) + Larger Capacity (8) should lead to capacity of 16
+        public void AdditionOverload_FourItemsAndFiveItems_ShouldEqualNineItemsList()
+        {
+            // Arrange
+            CustomList<int> left = new CustomList<int>();
+            CustomList<int> right = new CustomList<int>();
+            CustomList<int> singleList = new CustomList<int>();
+            for (int i = 0; i < 4; i++)
+            {
+                left.Add(i);
+                right.Add(i + 4);
+            }
+            right.Add(8);
+            for (int i = 0; i < 9; i++)
+            {
+                singleList.Add(i);
+            }
+
+            // Act
+            string expected = singleList.ToString();
+            string actual = (left + right).ToString();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void AdditionOverload_FourItemsAndFiveItems_CapacityShouldBe16()
+        {
+            // Arrange
+            CustomList<int> left = new CustomList<int>();
+            CustomList<int> right = new CustomList<int>();
+            for (int i = 0; i < 4; i++)
+            {
+                left.Add(i);
+                right.Add(i + 4);
+            }
+            right.Add(8);
+
+            // Act
+            int expected = 16;
+            int actual = (left + right).Capacity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void AdditionOverload_FourItemsAndFiveItems_CountShouldBeNine()
+        {
+            // Arrange
+            CustomList<int> left = new CustomList<int>();
+            CustomList<int> right = new CustomList<int>();
+            for (int i = 0; i < 4; i++)
+            {
+                left.Add(i);
+                right.Add(i + 4);
+            }
+            right.Add(8);
+
+            // Act
+            int expected = 9;
+            int actual = (left + right).Count;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
 
             // Assert
             Assert.AreEqual(expected, actual);
