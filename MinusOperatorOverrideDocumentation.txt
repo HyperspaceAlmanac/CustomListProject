@@ -1,0 +1,15 @@
+CustomList<T> - opreator override Method
+NameSpace: CustomListImplementation
+
+Overrides the - opreator for CustomList<T> objects.
+
+C#:
+public static CustomList<T> operator -(CustomList<T> left, CustomList<T> right);
+
+Parameters
+
+Returns
+
+Examples
+
+Remarks
