@@ -286,5 +286,111 @@ namespace CustomListUnitTesting
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        // Custom Capacity size test
+        // Rule is 1. Take left capacity if it's enough. 2. Take right capacity if it's enough. 3. Set Capacity to max(left, right) * 2  
+        [TestMethod]
+        public void Capacity_FourItemsCapacityTenAndSevenItemsCapacityEight_CapacityShouldBecomeTwenty()
+        {
+            // Arrange
+            CustomList<int> leftList = new CustomList<int>();
+            leftList.Capacity = 10;
+            CustomList<int> rightList = new CustomList<int>();
+            rightList.Capacity = 8;
+            for (int i = 0; i < 4; i++)
+            {
+                leftList.Add(i);
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                rightList.Add(i);
+            }
+
+            // Act
+            CustomList<int> newList = leftList + rightList;
+            int expected = 20;
+            int actual = newList.Capacity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Capacity_FourItemsCapacityEightAndSevenItemsCapacityTen_CapacityShouldBecomeTwenty()
+        {
+            // Arrange
+            CustomList<int> leftList = new CustomList<int>();
+            leftList.Capacity = 8;
+            CustomList<int> rightList = new CustomList<int>();
+            rightList.Capacity = 10;
+            for (int i = 0; i < 4; i++)
+            {
+                leftList.Add(i);
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                rightList.Add(i);
+            }
+
+            // Act
+            CustomList<int> newList = leftList + rightList;
+            int expected = 20;
+            int actual = newList.Capacity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Capacity_FourItemsCapacityTenAndSixItemsCapacitySeven_CapacityShouldBecomeTen()
+        {
+            // Arrange
+            CustomList<int> leftList = new CustomList<int>();
+            leftList.Capacity = 10;
+            CustomList<int> rightList = new CustomList<int>();
+            rightList.Capacity = 7;
+            for (int i = 0; i < 4; i++)
+            {
+                leftList.Add(i);
+            }
+            for (int i = 0; i < 6; i++)
+            {
+                rightList.Add(i);
+            }
+
+            // Act
+            CustomList<int> newList = leftList + rightList;
+            int expected = 10;
+            int actual = newList.Capacity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Capacity_FiveItemsCapacityFiveAndFiveItemsCapacityTen_CapacityShouldBecomeTen()
+        {
+            // Arrange
+            CustomList<int> leftList = new CustomList<int>();
+            leftList.Capacity = 5;
+            CustomList<int> rightList = new CustomList<int>();
+            rightList.Capacity = 10;
+            for (int i = 0; i < 5; i++)
+            {
+                leftList.Add(i);
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                rightList.Add(i);
+            }
+
+            // Act
+            CustomList<int> newList = leftList + rightList;
+            int expected = 10;
+            int actual = newList.Capacity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
