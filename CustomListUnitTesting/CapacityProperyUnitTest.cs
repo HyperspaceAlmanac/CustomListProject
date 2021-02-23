@@ -240,7 +240,7 @@ namespace CustomListUnitTesting
         }
 
         [TestMethod]
-        public void Capacity_FiveItemsAndFourItemsList_CapacityShouldStillBeSixteen()
+        public void Capacity_FiveItemsAndFourItemsList_CapacityShouldBeSixteen()
         {
             // Arrange
             CustomList<int> leftList = new CustomList<int>();
@@ -256,7 +256,7 @@ namespace CustomListUnitTesting
 
             // Act
             CustomList<int> newList = leftList + rightList;
-            int expected = 8;
+            int expected = 16;
             int actual = newList.Capacity;
 
             // Assert
@@ -264,7 +264,7 @@ namespace CustomListUnitTesting
         }
 
         [TestMethod]
-        public void Capacity_FourItemsAndFiveItemsList_CapacityShouldStillBeSixteen()
+        public void Capacity_FourItemsAndFiveItemsList_CapacityShouldBeSixteen()
         {
             // Arrange
             CustomList<int> leftList = new CustomList<int>();
@@ -280,7 +280,7 @@ namespace CustomListUnitTesting
 
             // Act
             CustomList<int> newList = leftList + rightList;
-            int expected = 8;
+            int expected = 16;
             int actual = newList.Capacity;
 
             // Assert
