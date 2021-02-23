@@ -11,7 +11,8 @@ namespace CustomListImplementation
         private T[] internalArray;
         private int count;
         private int capacity;
-        public CustomList() {
+        public CustomList()
+        {
             count = 0;
             capacity = 0;
             internalArray = new T[0];
@@ -44,19 +45,22 @@ namespace CustomListImplementation
         }
         public T this[int i]
         {
-            get {
+            get
+            {
                 if (i < 0 || i >= count)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
                 return internalArray[i];
             }
-            set {
+            set
+            {
                 if (i < 0 || i >= count)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                internalArray[i] = value; }
+                internalArray[i] = value;
+            }
         }
 
         public void Add(T item)
@@ -145,5 +149,13 @@ namespace CustomListImplementation
             }
             return newList;
         }
+
+        public static CustomList<T> operator -(CustomList<T> left, CustomList<T> right)
+        {
+            CustomList<T> newList = new CustomList<T>();
+            return newList;
+        }
+
+
     }
 }

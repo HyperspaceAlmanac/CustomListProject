@@ -57,6 +57,7 @@
     <Compile Include="ToStringUnitTest.cs" />
     <Compile Include="AdditionOperatorUnitTest.cs" />
     <Compile Include="CapacityProperyUnitTest.cs" />
+    <Compile Include="SubtractionOperator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
