@@ -1,15 +1,127 @@
-CustomList<T> - opreator override Method
+CustomList<T>.- Opreator
 NameSpace: CustomListImplementation
 
-Overrides the - opreator for CustomList<T> objects.
+Overrides the "-" opreator for CustomList<T> objects.
 
 C#:
 public static CustomList<T> operator -(CustomList<T> left, CustomList<T> right);
 
-Parameters
+###############
+# Parameters
+###############
+left CustomList<T>
+The CustomList<T> to remove T objects from.
 
-Returns
+right CustomList<T>
+The CustomList<T> that specifies the values (does not need to be unique) to remove. 
 
-Examples
+###############
+# Returns
+###############
+CustomList<T>
+A new deep copy Customlist<T> object with common values removed.
 
-Remarks
+###############
+# Examples
+###############
+using CustomListImplementation;
+// Simple Examples using the "-" operator
+
+// Example of unique values in original list but other list has
+// a unique value, a value that apperas twice, and a value that does not exist
+public Class Examples
+{
+	public static void Main()
+	{
+		// Create the CustomList<int> object to subtract from
+		CustomList<int> originalList = new CustomList<int>();
+		// Add in values 0-4
+		for (int i = 0; i < 5; i++) {
+			originalList.Add(i);
+		}
+		// Print out the original content of the CustomList
+		Console.WriteLine("Original list:");
+		Console.WriteLine(originalList.ToString();
+		
+		// Creat the CustomList that specifies the values to remove
+		CustomList<int> otherList = new CustomList<int>();
+		otherList.Add(1);
+		otherList.Add(3);
+		otherList.Add(6); // Value that does not exist
+		otherList.Add(3): // Duplicate value
+		
+		Console.WriteLine("Original list:");
+		Console.WriteLine(otherList);
+		
+		Console.WriteLine("originalList - otherList");
+		CustomList<int> result = originalList - otherList;
+		Console.WriteLine(result);
+	}
+}
+/* This code example produces the following output
+
+
+*/
+
+// Example of multiple instaces of certain values in original list
+
+public Class Examples
+{
+	public static void Main()
+	{
+		// Create the CustomList<int> object to subtract from
+		CustomList<int> originalList = new CustomList<int>();
+		// Add in values 0-4
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 5; j++) {
+				originalList.Add(j);
+			}
+		}
+		// Print out the original content of the CustomList
+		Console.WriteLine("Original list:");
+		Console.WriteLine(originalList.ToString();
+		
+		// Creat the CustomList that specifies the values to remove
+		CustomList<int> otherList = new CustomList<int>();
+		otherList.Add(1); // Remove first instance of 1
+		otherList.Add(1); // Remove second instance of 1
+		otherList.Add(2);
+		otherList.Add(3);
+		otherList.Add(6); // Value that does not exist
+		otherList.Add(3):
+		otherList.Add(1); // Remove last instane of 1
+		
+		Console.WriteLine("Original list:");
+		Console.WriteLine(otherList);
+		
+		Console.WriteLine("originalList - otherList");
+		CustomList<int> result = originalList - otherList;
+		Console.WriteLine(result);
+	}
+}
+/* This code example produces the following output
+
+*/
+
+
+###############
+# Remarks
+###############
+
+Returns a deep copy of CustomList<T> left with values in CustomList<T> right removed.
+For each value T (including duplicates) in right, try to remove the first instance of it from CustomList<T> left.
+Return the remaining values in left or CustomList<T> object with no values left.
+
+###############
+# Applies to
+###############
+
+Product : Versions
+.NET: 5.0
+.NET Core : 1.0, 1.1, 2.0, 2.1, 2.2, 3.0, 3.1
+.NET Framework : 1.1, 2.0, 3.0, 3.5, 4.0, 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2, 4.7, 4.7.1, 4.7.2, 4.8
+.NET Standard : 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 2.0, 2.1
+UWP	10.0
+Xamarin.Android : 7.1
+Xamarin.iOS : 10.8
+Xamarin.Mac : 3.0
