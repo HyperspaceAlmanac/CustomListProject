@@ -112,6 +112,17 @@ namespace CustomListImplementation
         }
         public static CustomList<T> operator +(CustomList<T> left, CustomList<T> right)
         {
+            // If left or right is empty, just return other
+            if (left.Count == 0)
+            {
+                return right;
+            }
+            else if (right.Count == 0)
+            {
+                return left;
+            }
+            // Extend the left by right
+            // Calculate Capacity first
             return null;
         }
     }

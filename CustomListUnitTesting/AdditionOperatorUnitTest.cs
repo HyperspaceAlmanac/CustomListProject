@@ -292,5 +292,53 @@ namespace CustomListUnitTesting
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+
+        //Deep Copy tests
+        [TestMethod]
+        public void AdditionOverload_EmptyListAndOneItem_OriginalListsShouldBeUnchanged()
+        {
+            // Arrange
+            CustomList<int> left = new CustomList<int>();
+            CustomList<int> right = new CustomList<int>();
+            right.Add(1);
+            string prePlusLeft = left.ToString();
+            string prePlusRight = right.ToString();
+
+            // Act
+            CustomList<int> newList = left + right;
+            string postPlusLeft = left.ToString();
+            string postPlusRight = right.ToString();
+
+            // Assert
+            Assert.AreEqual(prePlusLeft, postPlusLeft);
+            Assert.AreEqual(prePlusRight, postPlusRight);
+        }
+        [TestMethod]
+        // Smaller Capacity (4) + Larger Capacity (8) should lead to capacity of 16
+        public void AdditionOverload_FourItemsAndFiveItems_OriginalListsShouldBeUnchanged()
+        {
+            // Arrange
+            CustomList<int> left = new CustomList<int>();
+            CustomList<int> right = new CustomList<int>();
+            CustomList<int> singleList = new CustomList<int>();
+            for (int i = 0; i < 4; i++)
+            {
+                left.Add(i);
+                right.Add(i + 4);
+            }
+            right.Add(8);
+            string prePlusLeft = left.ToString();
+            string prePlusRight = right.ToString();
+
+            // Act
+            CustomList<int> newList = left + right;
+            string postPlusLeft = left.ToString();
+            string postPlusRight = right.ToString();
+
+            // Assert
+            Assert.AreEqual(prePlusLeft, postPlusLeft);
+            Assert.AreEqual(prePlusRight, postPlusRight);
+        }
     }
 }
