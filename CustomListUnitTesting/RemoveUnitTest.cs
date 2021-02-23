@@ -178,8 +178,6 @@ namespace CustomListUnitTesting
             bool actual = intList.Remove(0);
 
             // Assert
-
-            // Assert
             Assert.AreEqual(expected, actual);
         }
         // Batch 2
