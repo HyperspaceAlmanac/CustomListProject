@@ -110,5 +110,9 @@ namespace CustomListImplementation
             sb.Append("]");
             return sb.ToString();
         }
+        public static CustomList<T> operator +(CustomList<T> left, CustomList<T> right)
+        {
+            return null;
+        }
     }
 }
