@@ -23,7 +23,24 @@ namespace CustomListImplementation
         public int Capacity
         {
             get => capacity;
-            set => capacity = value;
+            set
+            {
+                // Need to change size of array when updating capacity
+                // Do nothing if new value is equal to capacity, or if it is less than count
+                if (value != capacity)
+                {
+                    if (value > count)
+                    {
+                        capacity = value;
+                        T[] newArray = new T[capacity];
+                        for (int i = 0; i < count; i++)
+                        {
+                            newArray[i] = internalArray[i];
+                        }
+                        internalArray = newArray;
+                    }
+                }
+            }
         }
         public T this[int i]
         {
@@ -113,17 +130,20 @@ namespace CustomListImplementation
         public static CustomList<T> operator +(CustomList<T> left, CustomList<T> right)
         {
             // If left or right is empty, just return other
-            if (left.Count == 0)
+            CustomList<T> newList = new CustomList<T>();
+            // Can fit into left or right capacity, if not, larger of two times two
+            newList.Capacity = (left.Count + right.Count <= left.Capacity) ? left.Capacity
+                : (left.Count + right.Count <= right.Capacity ? right.Capacity
+                : Math.Max(left.Capacity, right.Capacity) * 2);
+            for (int i = 0; i < left.Count; i++)
             {
-                return right;
+                newList.Add(left[i]);
             }
-            else if (right.Count == 0)
+            for (int i = 0; i < right.Count; i++)
             {
-                return left;
+                newList.Add(right[i]);
             }
-            // Extend the left by right
-            // Calculate Capacity first
-            return null;
+            return newList;
         }
     }
 }
