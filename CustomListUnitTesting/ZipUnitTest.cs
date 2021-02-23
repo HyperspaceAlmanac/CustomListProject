@@ -102,7 +102,7 @@ namespace CustomListUnitTesting
             }
             // Act
             string expected = zeroToFive.ToString();
-            string actual = leftList.Zip(rightList);
+            string actual = leftList.Zip(rightList).ToString();
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -129,7 +129,7 @@ namespace CustomListUnitTesting
 
             // Act
             string expected = expectedList.ToString();
-            string actual = leftList.Zip(rightList);
+            string actual = leftList.Zip(rightList).ToString();
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -180,7 +180,7 @@ namespace CustomListUnitTesting
 
             // Act
             string expected = expectedList.ToString();
-            string actual = leftList.Zip(rightList);
+            string actual = leftList.Zip(rightList).ToString();
 
             // Assert
             Assert.AreEqual(expected, actual);
