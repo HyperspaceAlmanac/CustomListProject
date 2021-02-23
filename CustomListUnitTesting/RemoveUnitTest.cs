@@ -182,6 +182,31 @@ namespace CustomListUnitTesting
             // Assert
             Assert.AreEqual(expected, actual);
         }
+        // Batch 2
+        [TestMethod]
+        public void Remove_FourIntList_RemoveAllValues_CountShouldEqualZero()
+        {
+            // Arrange
+            CustomList<int> intList = new CustomList<int>();
+
+            intList.Add(0);
+            intList.Add(1);
+            intList.Add(2);
+            intList.Add(3);
+
+            // Act
+            intList.Remove(0);
+            intList.Remove(1);
+            intList.Remove(2);
+            intList.Remove(3);
+            int expected = 0;
+            int actual = intList.Count;
+
+            // Assert
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
         // Part 2 of remove 1 with 2 matches. Check if other value that matched shfited down by 1
         [TestMethod]
         public void Remove_FourIntList_TwoMatch_SecondMatchShouldShiftDownByOne()
@@ -203,6 +228,5 @@ namespace CustomListUnitTesting
             // Assert
             Assert.AreEqual(expected, actual);
         }
-
     }
 }
