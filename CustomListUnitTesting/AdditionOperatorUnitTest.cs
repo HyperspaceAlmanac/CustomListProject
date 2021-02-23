@@ -212,5 +212,85 @@ namespace CustomListUnitTesting
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        // Larger Capacity (16) + Smaller Capacity (6) should lead to capacity of 16
+        public void AdditionOverload_NineItemsAndSixItems_ShouldEqualFifteenItemsList()
+        {
+            // Arrange
+            CustomList<int> left = new CustomList<int>();
+            CustomList<int> right = new CustomList<int>();
+            CustomList<int> singleList = new CustomList<int>();
+            for (int i = 0; i < 9; i++)
+            {
+                left.Add(i);
+                if (i < 6)
+                {
+                    right.Add(i + 9);
+                }
+            }
+            for (int i = 0; i < 15; i++)
+            {
+                singleList.Add(i);
+            }
+
+            // Act
+            string expected = singleList.ToString();
+            string actual = (left + right).ToString();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void AdditionOverload_NineItemsAndSixItems_CountShouldBeFifteen()
+        {
+            // Arrange
+            CustomList<int> left = new CustomList<int>();
+            CustomList<int> right = new CustomList<int>();
+            for (int i = 0; i < 9; i++)
+            {
+                left.Add(i);
+                if (i < 6)
+                {
+                    right.Add(i + 9);
+                }
+            }
+
+            // Act
+            int expected = 15;
+            int actual = (left + right).Count;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void AdditionOverload_NineItemsAndSixItems_CapacityShouldStillBe16()
+        {
+            // Arrange
+            CustomList<int> left = new CustomList<int>();
+            CustomList<int> right = new CustomList<int>();
+            for (int i = 0; i < 9; i++)
+            {
+                left.Add(i);
+                if (i < 6)
+                {
+                    right.Add(i + 9);
+                }
+            }
+
+
+            // Act
+            int expected = 16;
+            int actual = (left + right).Capacity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
