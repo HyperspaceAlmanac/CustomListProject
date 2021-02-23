@@ -165,6 +165,12 @@ namespace CustomListImplementation
             return newList;
         }
 
+        public CustomList<T> Zip(CustomList<T> rightlist)
+        {
+            CustomList<T> zipped = new CustomList<T>();
+            return zipped;
+        }
+
 
     }
 }
