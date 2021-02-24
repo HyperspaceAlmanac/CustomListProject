@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomListImplementation
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable
     {
         private T[] internalArray;
         private int count;
@@ -198,6 +199,12 @@ namespace CustomListImplementation
             return zipped;
         }
 
-
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return internalArray[i];
+            }
+        }
     }
 }
