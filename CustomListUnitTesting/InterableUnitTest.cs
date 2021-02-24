@@ -56,6 +56,39 @@ namespace CustomListUnitTesting
             foreach (int intVal in cList)
             {
                 Assert.AreEqual(expected[counter], intVal);
+                counter += 1;
+            }
+        }
+
+        [TestMethod]
+        public void Iterable_EmptyList_ShouldNotIterate()
+        {
+            // Arrange
+            CustomList<int> emptyList = new CustomList<int>();
+
+            // Act
+
+            // Assert
+            foreach (int intVal in emptyList)
+            {
+                Assert.Fail("Should not do anything for empty list");
+            }
+        }
+
+        [TestMethod]
+        public void Iterable_OneItemList_ShouldReturnOneValue()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(99);
+
+            // Act
+            int expected = 99;
+
+            // Assert
+            foreach (int intVal in cList)
+            {
+                Assert.AreEqual(expected, intVal);
             }
         }
     }
