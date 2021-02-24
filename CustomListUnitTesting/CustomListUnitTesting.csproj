@@ -59,6 +59,7 @@
     <Compile Include="CapacityProperyUnitTest.cs" />
     <Compile Include="SubtractionOperator.cs" />
     <Compile Include="InterableUnitTest.cs" />
+    <Compile Include="SortUnitTest.cs" />
     <Compile Include="ZipUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>

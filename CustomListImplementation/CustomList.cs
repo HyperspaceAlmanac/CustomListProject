@@ -12,11 +12,13 @@ namespace CustomListImplementation
         private T[] internalArray;
         private int count;
         private int capacity;
+        private Random rand;
         public CustomList()
         {
             count = 0;
             capacity = 0;
             internalArray = new T[0];
+            rand = new Random();
         }
         public int Count
         {
@@ -205,6 +207,16 @@ namespace CustomListImplementation
             {
                 yield return internalArray[i];
             }
+        }
+
+        public void Sort()
+        {
+            // Really should just do Quicksort.
+        }
+
+        private void QuickSort(int pivot, int leftIndex, int rightIndex)
+        {
+
         }
     }
 }

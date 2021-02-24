@@ -196,7 +196,7 @@ namespace CustomListUnitTesting
             fiveSortedValues.Add(25);
             fiveSortedValues.Add(50);
             CustomList<int> cList = new CustomList<int>();
-            cList.Add(fiveeSortedValues[3]);
+            cList.Add(fiveSortedValues[3]);
             cList.Add(fiveSortedValues[1]);
             cList.Add(fiveSortedValues[0]);
             cList.Add(fiveSortedValues[4]);
