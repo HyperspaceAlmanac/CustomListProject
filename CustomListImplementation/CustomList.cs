@@ -165,9 +165,36 @@ namespace CustomListImplementation
             return newList;
         }
 
-        public CustomList<T> Zip(CustomList<T> rightlist)
+        public CustomList<T> Zip(CustomList<T> rightList)
         {
+            // Double capacity until everything can fit
             CustomList<T> zipped = new CustomList<T>();
+            while (count + rightList.count > capacity)
+            {
+                if (capacity == 0)
+                {
+                    capacity = 4;
+                }
+                else
+                {
+                    capacity *= 2;
+                }
+            }
+            int i = 0;
+            int j = 0;
+            while (i < count || j < rightList.Count)
+            {
+                if (i < count)
+                {
+                    zipped.Add(internalArray[i]);
+                    i += 1;
+                }
+                if (j < rightList.Count)
+                {
+                    zipped.Add(rightList[j]);
+                    j += 1;
+                }
+            }
             return zipped;
         }
 

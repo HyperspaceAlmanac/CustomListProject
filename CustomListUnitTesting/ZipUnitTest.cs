@@ -249,8 +249,30 @@ namespace CustomListUnitTesting
 
             // Act
             int expected = 16;
-            int actual = leftList.Zip(rightList).Count;
+            int actual = leftList.Zip(rightList).Capacity;
             
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Zip_FourItems_SixItems_CountShouldBeTen()
+        {
+            // Arrange
+            CustomList<int> leftList = new CustomList<int>();
+            CustomList<int> rightList = new CustomList<int>();
+
+            for (int i = 0; i < 4; i++)
+            {
+                leftList.Add(i * 2);
+                rightList.Add(i * 2 + 1);
+            }
+            rightList.Add(8);
+            rightList.Add(9);
+
+            // Act
+            int expected = 10;
+            int actual = leftList.Zip(rightList).Count;
+
             // Assert
             Assert.AreEqual(expected, actual);
         }
