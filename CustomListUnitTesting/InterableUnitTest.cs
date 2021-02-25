@@ -372,7 +372,7 @@ namespace CustomListUnitTesting
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void TransactionID_AddTwoItemToList_IndexerUpdatesSameValue_ShouldBeThree()
+        public void TransactionID_AddTwoItemToList_IndexerUpdatesIndexWithSameValue_ShouldBeThree()
         {
             // Arrange
             CustomList<int> cList = new CustomList<int>();
@@ -389,7 +389,7 @@ namespace CustomListUnitTesting
         }
 
         [TestMethod]
-        public void TransactionID_AddTwoItemToList_UseAddOperator_ShouldStillBeTwo()
+        public void TransactionID_AddTwoItemToList_UseAddOperator_OriginalShouldStillBeTwo()
         {
             // Arrange
             CustomList<int> cList = new CustomList<int>();
@@ -411,8 +411,31 @@ namespace CustomListUnitTesting
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
-        public void TransactionID_AddTwoItemToList_UseSubtractOperator_ShouldStillBeTwo()
+        public void TransactionID_TwoItemListPlusThreeItemList_NewListShouldBeFive()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            CustomList<int> other = new CustomList<int>();
+
+            cList.Add(1);
+            cList.Add(2);
+
+            other.Add(1);
+            other.Add(2);
+            other.Add(3);
+
+            // Act
+
+            int expected = 5;
+            int actual = (cList + other).TransactionID;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void TransactionID_AddTwoItemToList_UseSubtractOperator_OriginalShouldStillBeTwo()
         {
             // Arrange
             CustomList<int> cList = new CustomList<int>();
@@ -434,7 +457,7 @@ namespace CustomListUnitTesting
             // Assert
             Assert.AreEqual(expected, actual);
         }
-        
+
         [TestMethod]
         public void TransactionID_FiveItemsPlusFourItems_ShouldBeNine()
         {
@@ -531,6 +554,53 @@ namespace CustomListUnitTesting
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void TransactionID_TwoItemsZipThreeItems_LeftShouldStillBeTwo()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            CustomList<int> other = new CustomList<int>();
+
+            cList.Add(1);
+            cList.Add(2);
+
+            other.Add(1);
+            other.Add(2);
+            other.Add(3);
+
+            // Act
+            CustomList<int> temp = cList.Zip(other);
+
+            int expected = 2;
+            int actual = cList.TransactionID;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TransactionID_TwoItemsZipThreeItems_NewListShouldStillBeFive()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            CustomList<int> other = new CustomList<int>();
+
+            cList.Add(1);
+            cList.Add(2);
+
+            other.Add(1);
+            other.Add(2);
+            other.Add(3);
+
+            // Act
+            int expected = 5;
+            int actual = cList.Zip(other).TransactionID;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
         [TestMethod]
         public void TransactionID_OneValueList_Sort_ShouldStillBeOne()
         {
