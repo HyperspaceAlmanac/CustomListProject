@@ -211,12 +211,62 @@ namespace CustomListImplementation
 
         public void Sort()
         {
-            // Really should just do Quicksort.
+            if (count > 1)
+            {
+                // Randomly pick pivot here
+                QuickSort(rand.Next(count), 0, count);
+            }
+        }
+        private void Swap(int left, int right)
+        {
+            T temp = internalArray[right];
+            internalArray[right] = internalArray[left];
+            internalArray[left] = temp;
+        }
+        private int CompareT(T left, T right)
+        {
+            return Comparer.DefaultInvariant.Compare(left, right);
         }
 
-        private void QuickSort(int pivot, int leftIndex, int rightIndex)
+        private void QuickSort(int pivotIndex, int leftIndex, int rightIndex)
         {
-
+            // Check for case of 1 and 2. Do recursion for rest
+            if (rightIndex - leftIndex == 0)
+            {
+                return;
+            }
+            else if (rightIndex - leftIndex == 1)
+            {
+                if (CompareT(internalArray[leftIndex], internalArray[rightIndex]) == 1)
+                {
+                    Swap(leftIndex, rightIndex);
+                }
+                return;
+            }
+            T pivotValue = internalArray[pivotIndex];
+            // Swap index to the end
+            Swap(pivotIndex, rightIndex);
+            pivotIndex = rightIndex;
+            rightIndex -= 1;
+            // move rightIndex until we find value smaller than pivot
+            while (rightIndex > -1 && CompareT(internalArray[rightIndex], internalArray[pivotIndex]) > -1)
+            {
+                rightIndex -= 1;
+            }
+            while (leftIndex < rightIndex)
+            {
+                if (CompareT(internalArray[leftIndex], internalArray[pivotIndex]) > -1)
+                {
+                    // Swap values if left >= pivot
+                    Swap(leftIndex, rightIndex);
+                    rightIndex -= 1;
+                    while (rightIndex > -1 && CompareT(internalArray[rightIndex], internalArray[pivotIndex]) > -1)
+                    {
+                        rightIndex -= 1;
+                    }
+                }
+                leftIndex += 1;
+            }
         }
     }
 }
