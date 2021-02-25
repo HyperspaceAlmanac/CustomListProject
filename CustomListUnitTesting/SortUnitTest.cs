@@ -254,7 +254,7 @@ namespace CustomListUnitTesting
         [TestMethod]
         public void Sort_TwentyRandomValues_EachValueShouldBeBiggerThanOneOnLeft()
         {
-            Random rand = new Random(); // Give spcific seed
+            Random rand = new Random(99); // Give spcific seed
             // Arrange
             CustomList<int> cList = new CustomList<int>();
             for (int i = 0; i < 20; i++)
@@ -274,7 +274,7 @@ namespace CustomListUnitTesting
         [TestMethod]
         public void Sort_HundredRandomValues_EachValueShouldBeBiggerThanOneOnLeft()
         {
-            Random rand = new Random(); // Give spcific seed
+            Random rand = new Random(99); // Give spcific seed
             // Arrange
             CustomList<int> cList = new CustomList<int>();
             for (int i = 0; i < 100; i++)

@@ -134,10 +134,12 @@ There should be three 0's, no 1's, two 2's, one 3, and three 4's
 ###############
 
 Returns a deep copy of the left operand CustomList<T> with values in the right operand CustomList<T> removed.
-For each value (including duplicates) in the right operand, try to remove the first instance of it from the left operand.
-Return the remaining values in the left operand in a CustomList<T> object.
+For each value (including duplicates) in the right operand, the methdo will try to remove the first instance of it from the left operand.
+The method will use CustomList<T>'s internal Remove method to try to remove values.
+Returns the remaining values in the left operand in a CustomList<T> object.
 
 The returned CustomList<T> object will retain the original Capacity value of the left operand.
+The CustomList<T> object returned will have TransactionID equal to number of items in left operand plus the number of items removed.
 
 ###############
 # Applies to
