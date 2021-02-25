@@ -833,7 +833,7 @@ namespace CustomListUnitTesting
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void EnumeratorMoveNext_TwoItems_ChangeValueInstantiation_ShouldThrowException()
+        public void EnumeratorMoveNext_TwoItems_ChangeValueAfterInstantiation_ShouldThrowException()
         {
             // Arrange
             CustomList<int> cList = new CustomList<int>();
