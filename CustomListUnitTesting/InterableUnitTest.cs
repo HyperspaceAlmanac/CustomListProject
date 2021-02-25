@@ -736,7 +736,7 @@ namespace CustomListUnitTesting
         }
 
         [TestMethod]
-        public void EnumeratorReset_TwoItems_Mover_ShouldReturnSecondValue()
+        public void EnumeratorReset_TwoItems_MoveTwice_ShouldReturnSecondValue()
         {
             // Arrange
             CustomList<int> cList = new CustomList<int>();
@@ -753,6 +753,97 @@ namespace CustomListUnitTesting
 
             // Assert
             Assert.AreEqual(expected, actual);
+        }
+
+        // Exception focused testing
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void EnumeratorMoveNext_TwoItems_MoveOnceChangeValueMoveOnce_ShouldThrowException()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(1);
+            cList.Add(2);
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            enumerator.MoveNext();
+            cList[0] = 3;
+            enumerator.MoveNext();
+        }
+
+        [TestMethod]
+        public void EnumeratorCurrent_TwoItems_MoveGetCurrent_ChangeValue_GetCurrent_ShouldReturnSameValue()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(1);
+            cList.Add(2);
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            enumerator.MoveNext();
+            int expected = (int)enumerator.Current;
+            cList[0] = 3;
+            int actual = (int)enumerator.Current;
+
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void EnumeratorCurrent_TwoItems_CheckCurrentAfterMovingSeveralTimes_ShouldReturnSameValue()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(1);
+            cList.Add(2);
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            enumerator.MoveNext();
+            enumerator.MoveNext();
+            int expected = (int)enumerator.Current;
+            enumerator.MoveNext();
+            enumerator.MoveNext();
+            enumerator.MoveNext();
+            enumerator.MoveNext();
+            enumerator.MoveNext();
+            int actual = (int)enumerator.Current;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void EnumeratorReset_TwoItems_ChangeValueThenReset_ShouldThrowException()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(1);
+            cList.Add(2);
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            cList.Add(3);
+            enumerator.Reset();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void EnumeratorMoveNext_TwoItems_ChangeValueInstantiation_ShouldThrowException()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(1);
+            cList.Add(2);
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            cList.Add(3);
+            enumerator.MoveNext();
         }
     }
 }
