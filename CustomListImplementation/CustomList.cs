@@ -12,12 +12,18 @@ namespace CustomListImplementation
         private T[] internalArray;
         private int count;
         private int capacity;
+        private int transactionID;
         private Random rand;
         public CustomList()
         {
             count = 0;
             capacity = 0;
+            transactionID = 0;
             internalArray = new T[0];
+        }
+        public int TransactionID
+        {
+            get => transactionID;
         }
         public int Count
         {
@@ -62,6 +68,7 @@ namespace CustomListImplementation
                     throw new ArgumentOutOfRangeException();
                 }
                 internalArray[i] = value;
+                transactionID += 1;
             }
         }
 
@@ -87,6 +94,7 @@ namespace CustomListImplementation
                 }
             }
             internalArray[count] = item;
+            transactionID += 1;
             count += 1;
         }
 
@@ -119,6 +127,7 @@ namespace CustomListImplementation
             }
             internalArray = newArray;
             count -= 1;
+            transactionID += 1;
             return true;
         }
 
@@ -202,10 +211,12 @@ namespace CustomListImplementation
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            for (int i = 0; i < count; i++)
-            {
-                yield return internalArray[i];
-            }
+            return (IEnumerator)GetEnumerator();
+        }
+
+        public CustomListEnumerator<T> GetEnumerator()
+        {
+            return new CustomListEnumerator<T>(this);
         }
 
         public void Sort()
@@ -213,6 +224,7 @@ namespace CustomListImplementation
             if (count > 1)
             {
                 QuickSort(0, count - 1);
+                transactionID += 1;
             }
         }
         private void Swap(int left, int right)

@@ -9,7 +9,7 @@ namespace CustomListUnitTesting
     public class InterableUnitTest
     {
         [TestMethod]
-        public void Iterable_EmptyList_ShouldNotIterate()
+        public void Enumerator_EmptyList_ShouldNotIterate()
         {
             // Arrange
             CustomList<int> emptyList = new CustomList<int>();
@@ -24,7 +24,7 @@ namespace CustomListUnitTesting
         }
 
         [TestMethod]
-        public void Iterable_OneItemList_ShouldReturnOneValue()
+        public void Enumerator_OneItemList_ShouldReturnOneValue()
         {
             // Arrange
             CustomList<int> cList = new CustomList<int>();
@@ -41,7 +41,7 @@ namespace CustomListUnitTesting
         }
 
         [TestMethod]
-        public void Iterable_ThreeItemList_ShouldReturnThreeValues()
+        public void Enumerator_ThreeItemList_ShouldReturnThreeValues()
         {
             // Arrange
             CustomList<int> cList = new CustomList<int>();
@@ -62,7 +62,7 @@ namespace CustomListUnitTesting
         }
 
         [TestMethod]
-        public void Iterable_TwoLoopSameThreeItemList_ShouldReturnNineValues()
+        public void Enumerator_TwoLoopSameThreeItemList_ShouldReturnNineValues()
         {
             // Arrange
             CustomList<int> cList = new CustomList<int>();
@@ -87,8 +87,174 @@ namespace CustomListUnitTesting
         }
 
         [TestMethod]
+        public void Enumerator_TwoLoopSameThreeItemList_EnumeratorsShouldBeAtDifferentIndex()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(101);
+            cList.Add(7);
+            cList.Add(1);
+
+            // Act
+            int[] expected = new int[] { 101, 7, 1 };
+            int outsideLoopCounter;
+            int insideLoopCounter;
+
+            // Assert
+            outsideLoopCounter = 0;
+            foreach (int intVal in cList)
+            {
+                insideLoopCounter = 0;
+                foreach (int intVal2 in cList)
+                {
+                    Assert.AreEqual(expected[insideLoopCounter], intVal2);
+                    insideLoopCounter += 1;
+                }
+                Assert.AreEqual(expected[outsideLoopCounter], intVal);
+                outsideLoopCounter += 1;
+            }
+        }
+
+        [TestMethod]
+        public void Enumerator_EnumerateOneceUpdateValueEnumerateAgain_ShouldReturnCorrectValues()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(101);
+            cList.Add(7);
+            cList.Add(1);
+
+            // Act
+            int[] expected = new int[] { 101, 7, 1 };
+            int index = 0;
+
+            // Assert
+            foreach (int intVal in cList)
+            {
+                Assert.AreEqual(expected[index], intVal);
+                index += 1;
+            }
+            // Act 2
+            expected[2] = -1;
+            cList[2] = -1;
+            index = 0;
+            //Assert 2
+            foreach (int intVal in cList)
+            {
+                Assert.AreEqual(expected[index], intVal);
+                index += 1;
+            }
+
+        }
+        [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void Iterable_ThreeItemList_ShouldThrowExceptionIfValueChanges()
+        public void Enumerator_ThreeItemListUpdateListAtEndofLastLoop_ShouldThrowException()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(101);
+            cList.Add(7);
+            cList.Add(1);
+
+            // Act
+            int index = 0;
+
+            // Assert
+            foreach (int intVal in cList)
+            {
+                index += 1;
+                if (index == cList.Count)
+                {
+                    cList[0] = 1;
+                }
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Enumerator_ThreeItemList_RemoveValueInList_ShouldThrowException()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(101);
+            cList.Add(7);
+            cList.Add(1);
+
+            // Act
+            int index = 0;
+
+            // Assert
+            foreach (int intVal in cList)
+            {
+                index += 1;
+                if (index == cList.Count)
+                {
+                    cList[0] = 1;
+                    cList.Remove(101);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Enumerator_ThreeItemList_IndexingValuesShouldNotThrowAssertion()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(101);
+            cList.Add(7);
+            cList.Add(1);
+
+            // Act
+            int[] expected = new int[] { 101, 7, 1 };
+            int counter;
+            int temp;
+
+            // Assert
+            foreach (int intVal in cList)
+            {
+                counter = 0;
+                foreach (int intVal2 in cList)
+                {
+                    Assert.AreEqual(expected[counter], intVal2);
+                    counter += 1;
+                    temp = cList[0];
+                    temp = cList[1];
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Enumerator_ThreeItemList_RemoveValueNotInList_ShouldNotThrowAssertion()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(101);
+            cList.Add(7);
+            cList.Add(1);
+
+            // Act
+            int[] expected = new int[] { 101, 7, 1 };
+            int counter;
+            int temp;
+
+            // Assert
+            foreach (int intVal in cList)
+            {
+                counter = 0;
+                foreach (int intVal2 in cList)
+                {
+                    Assert.AreEqual(expected[counter], intVal2);
+                    counter += 1;
+                    temp = cList[0];
+                    temp = cList[1];
+                    cList.Remove(1000);
+                }
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Enumerator_ThreeItemList_ShouldThrowExceptionIfValueChanges()
         {
             // Arrange
             CustomList<int> cList = new CustomList<int>();
@@ -292,8 +458,9 @@ namespace CustomListUnitTesting
             right.Add(3);
             right.Add(4);
             right.Add(5);
-            right[4] = 0;
-            right[4] = 5;
+            right.Remove(5);
+            right[3] = 0;
+            right[3] = 5;
 
             // Act
             int expected = 9;
@@ -361,6 +528,58 @@ namespace CustomListUnitTesting
             int expected = 7;
             int actual = (left - right).TransactionID;
 
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void TransactionID_OneValueList_Sort_ShouldStillBeOne()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(101);
+            // Act
+            int expected = cList.TransactionID;
+            cList.Sort();
+            int actual = cList.TransactionID;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TransactionID_FiveValuesList_Sort_ShouldIncrementByOne()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(101);
+            cList.Add(7);
+            cList.Add(1);
+            cList.Add(3);
+            cList.Add(-1);
+
+            // Act
+            int expected = cList.TransactionID + 1;
+            cList.Sort();
+            int actual = cList.TransactionID;
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TransactionID_FiveValuesList_ChangeCapacity_ShouldRemainSame()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(101);
+            cList.Add(7);
+            cList.Add(1);
+            cList.Add(3);
+            cList.Add(-1);
+
+            // Act
+            int expected = cList.TransactionID;
+            cList.Capacity = 16;
+            int actual = cList.TransactionID;
             // Assert
             Assert.AreEqual(expected, actual);
         }
