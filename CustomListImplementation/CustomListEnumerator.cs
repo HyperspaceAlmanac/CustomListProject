@@ -12,6 +12,7 @@ namespace CustomListImplementation
         private int index;
         private int startingTransactionID;
         CustomList<T> underlyingData;
+        T current;
         public object Current
         {
             get
@@ -20,11 +21,7 @@ namespace CustomListImplementation
                 {
                     throw new InvalidOperationException();
                 }
-                if (index < underlyingData.Count)
-                {
-                    return underlyingData[index];
-                }
-                throw new InvalidOperationException();
+                return current;
             }
         }
         public CustomListEnumerator (CustomList<T> target) {
@@ -53,6 +50,7 @@ namespace CustomListImplementation
             if (index < underlyingData.Count - 1)
             {
                 index += 1;
+                current = underlyingData[index];
                 return true;
             }
             else
