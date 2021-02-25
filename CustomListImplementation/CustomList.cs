@@ -212,7 +212,6 @@ namespace CustomListImplementation
         {
             if (count > 1)
             {
-                // Randomly pick pivot here
                 QuickSort(0, count - 1);
             }
         }
