@@ -243,10 +243,11 @@ namespace CustomListImplementation
                 return;
             }
             // Lazy implementation:
-            // 0. Using Perl implementation, don't choose random pivot, always use end
-            // 1. Count number of values less than pivot
-            // 2. Move pivot to 1 right of it
-            // 3. Pointers at start and end, swap values as needed
+            // 0. Always use last number as pivot, don't bother with randomly choosing one
+            // 1. Count number of values less than pivot to swap pivot to after it
+            // 2. Go through each value on left side of pivot:
+            //   a. If value is larger than pivot, swap with first value lower than pivot on right side
+            // Stop when we hit pivot
       
             int smaller = 0;
             for (int i = leftIndex; i < rightIndex; i++)
@@ -275,7 +276,7 @@ namespace CustomListImplementation
                 Swap(pivotPoint, rightIndex);
                 while (left < pivotPoint)
                 {
-                    // If value is greater
+                    // left < pivot is 1, left == pivot is 0, left > pivot is -1
                     if (CompareT(internalArray[left], internalArray[pivotPoint]) > -1)
                     {
                         // Pivot < right is 1, pivot == right is 0, pivot > right is -1
