@@ -583,5 +583,176 @@ namespace CustomListUnitTesting
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        // Implicit Interface implementation test cases
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void EnumeratorCurrent_EmptyList_ShouldThrowException()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            int temp = (int) enumerator.Current;
+        }
+
+        // Implicit Interface implementation test cases
+        [TestMethod]
+        public void EnumeratorMoveNext_EmptyList_ShouldReturnFalse()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            bool expected = false;
+            bool actual = enumerator.MoveNext();
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        // Implicit Interface implementation test cases
+        [TestMethod]
+        public void EnumeratorMoveNext_OneItem_ShouldReturnTrue()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(1);
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            bool expected = true;
+            bool actual = enumerator.MoveNext();
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        // Implicit Interface implementation test cases
+        [TestMethod]
+        public void EnumeratorMoveNext_OneItem_SecondTimeShouldReturnFalse()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(1);
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            bool expected = false;
+            enumerator.MoveNext();
+            bool actual = enumerator.MoveNext();
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        // Implicit Interface implementation test cases
+        [TestMethod]
+        public void EnumeratorMoveNext_OneItem_MoveNextOnce_ShouldReturnValue()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(1);
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            enumerator.MoveNext();
+            int expected = 1;
+            int actual = (int) enumerator.Current;
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        // Implicit Interface implementation test cases
+        [TestMethod]
+        public void EnumeratorCurrent_OneItem_MoveNextOnce_CurrenShouldReturnSameValueTwice()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(1);
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            enumerator.MoveNext();
+            int expected = 1;
+            int actual = (int)enumerator.Current;
+            // Assert
+            Assert.AreEqual(expected, actual);
+            actual = (int)enumerator.Current;
+            Assert.AreEqual(expected, actual);
+        }
+
+        // Implicit Interface implementation test cases
+        [TestMethod]
+        public void EnumeratorMoveNext_TwoItems_MoveNextTwice_ShouldReturnTrue()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(1);
+            cList.Add(2);
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            enumerator.MoveNext();
+            bool expected = true;
+            bool actual = enumerator.MoveNext();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void EnumeratorCurrent_TwoItems_MoveNextTwice_ShouldReturnSecondValue()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(1);
+            cList.Add(2);
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            enumerator.MoveNext();
+            enumerator.MoveNext();
+            int expected = cList[1];
+            int actual = (int) enumerator.Current;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void EnumeratorReset_TwoItems_MoveOnceThenReset_CurrentShouldThrowException()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(1);
+            cList.Add(2);
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            enumerator.MoveNext();
+            enumerator.Reset();
+            int temp = (int)enumerator.Current;
+        }
+
+        [TestMethod]
+        public void EnumeratorReset_TwoItems_Mover_ShouldReturnSecondValue()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(1);
+            cList.Add(2);
+
+            // Act
+            IEnumerator enumerator = cList.GetEnumerator();
+            enumerator.MoveNext();
+            enumerator.Reset();
+            enumerator.MoveNext();
+            int expected = cList[0];
+            int actual = (int)enumerator.Current;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

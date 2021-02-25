@@ -209,12 +209,7 @@ namespace CustomListImplementation
             return zipped;
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return (IEnumerator)GetEnumerator();
-        }
-
-        public CustomListEnumerator<T> GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
             return new CustomListEnumerator<T>(this);
         }
