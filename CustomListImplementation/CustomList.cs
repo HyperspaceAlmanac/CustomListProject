@@ -18,7 +18,6 @@ namespace CustomListImplementation
             count = 0;
             capacity = 0;
             internalArray = new T[0];
-            rand = new Random();
         }
         public int Count
         {
@@ -214,7 +213,7 @@ namespace CustomListImplementation
             if (count > 1)
             {
                 // Randomly pick pivot here
-                QuickSort(rand.Next(count), 0, count - 1);
+                QuickSort(0, count - 1);
             }
         }
         private void Swap(int left, int right)
@@ -228,7 +227,7 @@ namespace CustomListImplementation
             return Comparer.DefaultInvariant.Compare(left, right);
         }
 
-        private void QuickSort(int pivotIndex, int leftIndex, int rightIndex)
+        private void QuickSort(int leftIndex, int rightIndex)
         {
             // Check for case of 1 and 2. Do recursion for rest
             if (rightIndex - leftIndex == 0)
@@ -244,11 +243,11 @@ namespace CustomListImplementation
                 return;
             }
             // Lazy implementation:
+            // 0. Using Perl implementation, don't choose random pivot, always use end
             // 1. Count number of values less than pivot
             // 2. Move pivot to 1 right of it
             // 3. Pointers at start and end, swap values as needed
-            // Swap index to the end
-            Swap(pivotIndex, rightIndex);
+      
             int smaller = 0;
             for (int i = leftIndex; i < rightIndex; i++)
             {
@@ -260,13 +259,13 @@ namespace CustomListImplementation
             if (smaller == rightIndex - leftIndex)
             {
                 // pivot is 
-                QuickSort(rand.Next(leftIndex, rightIndex), leftIndex, rightIndex - 1);
+                QuickSort(leftIndex, rightIndex - 1);
             }
             else if (smaller == 0)
             {
                 // pivot is smallest
                 Swap(leftIndex, rightIndex);
-                QuickSort(rand.Next(leftIndex + 1, rightIndex + 1), leftIndex + 1, rightIndex);
+                QuickSort(leftIndex + 1, rightIndex);
             }
             else
             {
@@ -279,7 +278,8 @@ namespace CustomListImplementation
                     // If value is greater
                     if (CompareT(internalArray[left], internalArray[pivotPoint]) > -1)
                     {
-                        while (CompareT(internalArray[pivotPoint], internalArray[right]) < 0)
+                        // Pivot < right is 1, pivot == right is 0, pivot > right is -1
+                        while (CompareT(internalArray[pivotPoint], internalArray[right]) <= 0)
                         {
                             right -= 1;
                         }
@@ -289,8 +289,8 @@ namespace CustomListImplementation
                     // Otherwise continue
                     left += 1;
                 }
-                QuickSort(rand.Next(pivotPoint), leftIndex, pivotPoint - 1);
-                QuickSort(rand.Next(pivotPoint + 1, rightIndex + 1), pivotPoint + 1, rightIndex);
+                QuickSort(leftIndex, pivotPoint - 1);
+                QuickSort(pivotPoint + 1, rightIndex);
             }
         }
     }

@@ -250,5 +250,47 @@ namespace CustomListUnitTesting
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Sort_TwentyRandomValues_EachValueShouldBeBiggerThanOneOnLeft()
+        {
+            Random rand = new Random(); // Give spcific seed
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            for (int i = 0; i < 20; i++)
+            {
+                cList.Add(rand.Next(-100, 100));
+            }
+
+            // Act
+            cList.Sort();
+
+            // Assert
+            for (int i = 1; i < cList.Count; i++)
+            {
+                Assert.IsTrue(cList[i] >= cList[i - 1]);
+            }
+        }
+        [TestMethod]
+        public void Sort_HundredRandomValues_EachValueShouldBeBiggerThanOneOnLeft()
+        {
+            Random rand = new Random(); // Give spcific seed
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            for (int i = 0; i < 100; i++)
+            {
+                cList.Add(rand.Next(-1000, 1000));
+            }
+
+            // Act
+            cList.Sort();
+
+            // Assert
+            for (int i = 1; i < cList.Count; i++)
+            {
+                Assert.IsTrue(cList[i] >= cList[i - 1]);
+            }
+        }
+
     }
 }
