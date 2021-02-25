@@ -214,7 +214,7 @@ namespace CustomListImplementation
             if (count > 1)
             {
                 // Randomly pick pivot here
-                QuickSort(rand.Next(count), 0, count);
+                QuickSort(rand.Next(count), 0, count - 1);
             }
         }
         private void Swap(int left, int right)
@@ -243,29 +243,54 @@ namespace CustomListImplementation
                 }
                 return;
             }
-            T pivotValue = internalArray[pivotIndex];
+            // Lazy implementation:
+            // 1. Count number of values less than pivot
+            // 2. Move pivot to 1 right of it
+            // 3. Pointers at start and end, swap values as needed
             // Swap index to the end
             Swap(pivotIndex, rightIndex);
-            pivotIndex = rightIndex;
-            rightIndex -= 1;
-            // move rightIndex until we find value smaller than pivot
-            while (rightIndex > -1 && CompareT(internalArray[rightIndex], internalArray[pivotIndex]) > -1)
+            int smaller = 0;
+            for (int i = leftIndex; i < rightIndex; i++)
             {
-                rightIndex -= 1;
-            }
-            while (leftIndex < rightIndex)
-            {
-                if (CompareT(internalArray[leftIndex], internalArray[pivotIndex]) > -1)
+                if (CompareT(internalArray[i], internalArray[rightIndex]) == -1)
                 {
-                    // Swap values if left >= pivot
-                    Swap(leftIndex, rightIndex);
-                    rightIndex -= 1;
-                    while (rightIndex > -1 && CompareT(internalArray[rightIndex], internalArray[pivotIndex]) > -1)
-                    {
-                        rightIndex -= 1;
-                    }
+                    smaller += 1;
                 }
-                leftIndex += 1;
+            }
+            if (smaller == rightIndex - leftIndex)
+            {
+                // pivot is 
+                QuickSort(rand.Next(leftIndex, rightIndex), leftIndex, rightIndex - 1);
+            }
+            else if (smaller == 0)
+            {
+                // pivot is smallest
+                Swap(leftIndex, rightIndex);
+                QuickSort(rand.Next(leftIndex + 1, rightIndex + 1), leftIndex + 1, rightIndex);
+            }
+            else
+            {
+                int left = leftIndex;
+                int right = rightIndex;
+                int pivotPoint = smaller + leftIndex;
+                Swap(pivotPoint, rightIndex);
+                while (left < pivotPoint)
+                {
+                    // If value is greater
+                    if (CompareT(internalArray[left], internalArray[pivotPoint]) > -1)
+                    {
+                        while (CompareT(internalArray[pivotPoint], internalArray[right]) < 0)
+                        {
+                            right -= 1;
+                        }
+                        Swap(left, right);
+                        right -= 1;
+                    }
+                    // Otherwise continue
+                    left += 1;
+                }
+                QuickSort(rand.Next(pivotPoint), leftIndex, pivotPoint - 1);
+                QuickSort(rand.Next(pivotPoint + 1, rightIndex + 1), pivotPoint + 1, rightIndex);
             }
         }
     }

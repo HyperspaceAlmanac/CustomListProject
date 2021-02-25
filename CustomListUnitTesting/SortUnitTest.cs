@@ -139,7 +139,8 @@ namespace CustomListUnitTesting
             tenSortedValues.Add(11);
             tenSortedValues.Add(12);
             tenSortedValues.Add(25);
-            tenSortedValues.Add(30);
+            tenSortedValues.Add(35);
+            tenSortedValues.Add(35);
             tenSortedValues.Add(50);
             tenSortedValues.Add(51);
             tenSortedValues.Add(77);
