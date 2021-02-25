@@ -62,6 +62,31 @@ namespace CustomListUnitTesting
         }
 
         [TestMethod]
+        public void Iterable_TwoLoopSameThreeItemList_ShouldReturnNineValues()
+        {
+            // Arrange
+            CustomList<int> cList = new CustomList<int>();
+            cList.Add(101);
+            cList.Add(7);
+            cList.Add(1);
+
+            // Act
+            int[] expected = new int[] { 101, 7, 1 };
+            int counter;
+
+            // Assert
+            foreach (int intVal in cList)
+            {
+                counter = 0;
+                foreach (int intVal2 in cList)
+                {
+                    Assert.AreEqual(expected[counter], intVal2);
+                    counter += 1;
+                }
+            }
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void Iterable_ThreeItemList_ShouldThrowExceptionIfValueChanges()
         {
